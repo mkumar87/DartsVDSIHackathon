@@ -1,0 +1,42 @@
+{
+  "name": "angoolar",
+  "authors": [
+    "Olen Davis <spelledlikeitsounds@gmail.com>"
+  ],
+  "description": "This defines the core of what makes an AngOOlar project an AngOOlar project.",
+  "keywords": [
+    "angoolar",
+    "angular",
+    "core",
+    "base",
+    "classes",
+    "project",
+    "scaffolding",
+    "scaffold",
+    "coffeescript",
+    "object",
+    "oriented",
+    "framework",
+    "approach"
+  ],
+  "license": "MIT",
+  "homepage": "http://angoolar.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "devDependencies": {
+    "angular": "1.3.0-rc.2"
+  },
+  "version": "0.7.1",
+  "_release": "0.7.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.7.1",
+    "commit": "ecf2ac2eda839b03fd5003014322c15feda495ae"
+  },
+  "_source": "git://github.com/OlenDavis/angoolar.git",
+  "_target": "~0.7.0",
+  "_originalSource": "angoolar"
+}

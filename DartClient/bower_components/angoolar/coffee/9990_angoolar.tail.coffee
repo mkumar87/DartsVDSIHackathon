@@ -1,0 +1,1 @@
+module.$_addToAngular() for moduleName, module of angoolar.modules

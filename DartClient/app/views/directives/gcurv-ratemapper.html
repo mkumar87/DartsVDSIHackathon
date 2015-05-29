@@ -1,0 +1,77 @@
+<div class="col-sm-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="prev pull-left" ng-show="nav" ng-click="moveLeft()" type="button"><i class="fa fa-chevron-left"></i>
+                    </button>
+                </div>
+                <div class="col-md-4 text-center">
+                    <select ng-model="SelectedMonth" ng-options="block.label for block in blockOptions" class="form-control">
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button class="prev pull-right" ng-show="nav" ng-click="moveRight()" type="button"><i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body no-padding animate-container" >
+          <div ng-repeat="block in blockOptions | filter:SelectedMonth.label as results  track by $index" class="animate-repeat"  ng-init="blockIndex = $index">
+            <table class="table cell-blocks noselect">
+                <thead>
+                    <tr>
+                        <th class="text-center text-success">{{block.label}}</th>
+                        <th class="text-center">00</th>
+                        <th class="text-center">01</th>
+                        <th class="text-center">02</th>
+                        <th class="text-center">03</th>
+                        <th class="text-center">04</th>
+                        <th class="text-center">05</th>
+                        <th class="text-center">06</th>
+                        <th class="text-center">07</th>
+                        <th class="text-center">08</th>
+                        <th class="text-center">09</th>
+                        <th class="text-center">10</th>
+                        <th class="text-center">11</th>
+                        <th class="text-center">12</th>
+                        <th class="text-center">13</th>
+                        <th class="text-center">14</th>
+                        <th class="text-center">15</th>
+                        <th class="text-center">16</th>
+                        <th class="text-center">17</th>
+                        <th class="text-center">18</th>
+                        <th class="text-center">19</th>
+                        <th class="text-center">20</th>
+                        <th class="text-center">21</th>
+                        <th class="text-center">22</th>
+                        <th class="text-center">23</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="day in days track by $index" class="{{day}}"  ng-init="dayIndex = $index" >
+                      <td class="day" width="20%">{{day}}</td>
+                      <td ng-repeat="n in [] | range:24"  class="{{blockIndex}}-{{dayIndex}}-{{n}} selectable">
+                        <!-- {{reqOptions.blocks[reqOptions.tariffs[block.label][day][n]]}} -->
+                        <i class="fa fa-stop" 
+                        data-tariff="{{reqOptions.HourlyTariffValues[blockIndex].HourBlockMapping[dayIndex][n].BlockName}}"
+                        style="color:{{reqOptions.HourlyTariffValues[blockIndex].HourBlockMapping[dayIndex][n].BlockColor}}"
+                         ng-click="applySelected(blockIndex, dayIndex, n )"></i>
+                      </td>
+                    </tr> 
+                   
+                </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-default block-select" ng-repeat="clrop in reqOptions.DefineBlocksValues" id="{{clrop.BlockName}}" 
+            style="border:3px solid {{clrop.BlockColor}}; margin-right:5px;" 
+            ng-click="selectedBlock($event, clrop, $index)" type="button">
+                {{clrop.BlockName | limitTo : 1}}
+            </button>
+        </div>
+
+        
+    </div>
+</div>

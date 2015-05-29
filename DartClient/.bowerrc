@@ -1,0 +1,5 @@
+{
+    "proxy":"http://vdsi\\v196591:Studio5!1@proxy.ebiz.verizon.com:80",
+    "https-proxy":"https://vdsi\\v196591:Studio5!1@proxy.ebiz.verizon.com:80",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:22.0) Gecko/20100101 Firefox/22.0"
+}

@@ -1,0 +1,68 @@
+<div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="portlet light heading">
+                <div class=" pull-left">
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="form-group pull-left">
+                    <ui-select ng-model="dashboard.selected" theme="bootstrap" ng-disabled="disabled" style="width: 250px;">
+                        <ui-select-match>{{$select.selected.DashboardDisplayText}}</ui-select-match>
+                        <ui-select-choices repeat="dashboard in dashboards.DashboardList | filter: $select.search">
+                            <span ng-bind-html="dashboard.DashboardDisplayText | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div>
+                    <button ng-click="addDashboard('lg')" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Add Dashboard</button>
+                    <button ng-click="addWidget('lg')" class="btn btn-warning pull-left" style="margin-left:5px;"><i class="fa fa-graph-o"></i> Add Widget</button>
+                </div>
+                <div class="site-dropdown form-group pull-right" ng-if="dashboard.selected">
+                    <button ng-click="deleteDashboard(dashboard.selected.DashboardId)" class="btn btn-danger pull-left"><i class="fa fa-times"></i> Delete This Dashboard</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6" ng-repeat="widget in dashboard.selected.WidgetsList">
+            <gcurv-widget-chart dropdown-configs="dropdownconfigs" widget-lists="dashboard.selected.WidgetsList" widget="widget" widget-position="$index"\>
+        </div>
+    </div>
+</div>
+<!-- Dashboard modal view -->
+<script type="text/ng-template" id="addDashboard.html">
+<form name="dashboardForm" novalidate>
+    <div class="modal-header">
+        <h3 class="modal-title">Add New Dashboard</h3>
+    </div>
+    <div class="modal-body">
+        <gcurv-basic-field ng-repeat='field in dashboardFormFields.FormDetails[0].fields'
+        field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="addDashboard()">Save Changes</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+    </form>
+</script>
+
+<!-- Widget modal view -->
+<script type="text/ng-template" id="addWidget.html">
+<form name="widgetForm" novalidate>
+    <div class="modal-header">
+        <h3 class="modal-title">Add/Edit Widget</h3>
+    </div>
+    <div class="modal-body">
+
+        <gcurv-basic-field ng-repeat='field in widgetFormFields.FormDetails[0].fields'
+        field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="addWidget()">Save Changes</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+    </form>
+</script>

@@ -1,0 +1,53 @@
+<ng-form class="row form-group" name="{{fieldDtl.name}}"
+    ng-class="{'has-error': {{fieldDtl.name}}.$dirty && {{fieldDtl.name}}.$invalid}"
+    ng-show="fieldDtl.display">
+        <label class="col-sm-5 control-label">{{ fieldDtl.label }} <span ng-if="fieldDtl.mandatory">*</span>
+        </label>
+        <div class="col-sm-7" ng-switch="fieldDtl.type">
+            <!-- when select control -->
+            <select ng-switch-when='dropdown' ng-model="fieldDtl.value" ng-options="k as v for (k,v) in fieldDtl.options" ng-required='fieldDtl.mandatory' ng-disabled="fieldDtl.disable" class="form-control" placeholder="{{fieldDtl.placeholder}}" id="{{fieldDtl.name}}">
+            </select>
+            <!-- when date control -->
+            <div ng-switch-when="date" class="input-group">
+                <input type="text" datepicker-popup="dd-MMMM-yyyy" ng-model="fieldDtl.value" is-open="field.open" ng-click="field.open = true" ng-required="true" close-text="Close" class="form-control" id="{{fieldDtl.name}}"/>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+            <!-- when dynamic fields -->
+            <div ng-switch-when='dynamicfields' class="well well-sm">
+                <div class="row form-group" ng-repeat="field in fieldDtl.fields">
+                    <label class="col-sm-5 control-label">{{ field.label }} <span ng-if="fieldDtl.mandatory">*</span>
+                    </label>
+                    <div class="col-sm-7">
+                        <input type="{{field.type}}" class="form-control" id="{{field.name}}" placeholder="{{field.placeholder}}" ng-model="field.value" ng-required='field.mandatory' ng-disabled="field.disable" id="{{fieldDtl.name}}">
+                    </div>
+                </div>
+            </div>
+
+            <div ng-switch-when='autocomplete'>
+                <ui-select ng-model="fieldDtl.value" theme="bootstrap" ng-disabled="fieldDtl.disabled">
+                    <ui-select-match placeholder="{{fieldDtl.placeholder}}" id="{{fieldDtl.name}}">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="opt.code as opt in fieldDtl.options | filter: $select.search">
+                        <span ng-bind-html="opt.name | highlight: $select.search"></span>
+                        <small ng-bind-html="opt.code | highlight: $select.search"></small>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div ng-switch-when='boolean' ng-switcher ng-model="fieldDtl.value" id="{{fieldDtl.name}}"></div>
+            <div ng-switch-when='checkbox' ng-switcher ng-model="fieldDtl.value" id="{{fieldDtl.name}}"></div>
+            
+            <input ng-switch-when='float' type="number" step="any" class="form-control" id="{{fieldDtl.name}}" placeholder="{{fieldDtl.placeholder}}" ng-model="fieldDtl.value" ng-required='fieldDtl.mandatory'>
+            
+            <!-- when image -->
+            <input ng-switch-when='image' type="file" class="form-control" id="{{fieldDtl.name}}" placeholder="{{fieldDtl.placeholder}}" ng-model="fieldDtl.value" ng-required='fieldDtl.mandatory' id="{{fieldDtl.name}}">
+            <!-- when text/email/url etc -->
+            <input ng-switch-default type="{{fieldDtl.type}}" class="form-control" id="{{fieldDtl.name}}" placeholder="{{fieldDtl.placeholder}}" ng-model="fieldDtl.value"
+            ng-required='fieldDtl.mandatory' >
+            <div class="tooltip right" role="tooltip" style="opacity:1;" ng-show="{{fieldDtl.name}}.$dirty && {{fieldDtl.name}}.$invalid" ng-messages="{{fieldDtl.name}}.$error">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner">
+                    <span ng-message="required">{{fieldDtl.label}} is required.</span>
+                    <span ng-repeat="(k,v) in types" ng-message="{{k}}">{{record[field].label}} {{v[1]}}</span>
+                </div>
+            </div>
+        </div>
+</ng-form>

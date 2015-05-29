@@ -1,0 +1,102 @@
+<div class="">
+    <form name="metricsFormArea">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase ng-binding">
+                    <i class="pull-left {{settingMetrics.FormDetails[0].icon}} fa-2x"></i> {{settingMetrics.FormDetails[0].displayName}}
+                </span>
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <gcurv-basic-field ng-repeat='field in settingMetrics.FormDetails[0].fields' field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+                </div>
+                <div class="col-sm-12">
+                    <button class="btn blue button-next" ng-click="save('Area')">
+                        Save <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+                    <button class="btn blue button-next" ng-click="cancel()">
+                        Cancel <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="portlet light">
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="areaGrid" ui-grid="areaGrid" ui-grid-selection ui-grid-pagination ui-grid-exporter class="grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- form:2-->
+    <form name="metricsFormOccupancy">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase ng-binding">
+                   <i class="pull-left {{settingMetrics.FormDetails[1].icon}} fa-2x"></i> {{settingMetrics.FormDetails[1].displayName}}
+                </span>
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <gcurv-basic-field ng-repeat='field in settingMetrics.FormDetails[1].fields' field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+                </div>
+                <div class="col-sm-12">
+                    <button class="btn blue button-next" ng-click="save('Occupancy')">
+                        Save <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+                    <button class="btn blue button-next" ng-click="cancel()">
+                        Cancel <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="portlet light">
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="occupancyGrid" ui-grid="occupancyGrid" ui-grid-selection ui-grid-pagination ui-grid-exporter class="grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- form:3-->
+    <div class="portlet light">
+        <form name="metricsFormDegreeDay">
+            <div class="portlet-title">
+                <h4><i class="pull-left {{settingMetrics.FormDetails[2].icon}} fa-2x"></i> {{settingMetrics.FormDetails[2].displayName}}</h4>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <gcurv-basic-field ng-repeat='field in settingMetrics.FormDetails[2].fields' field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+                </div>
+                <div class="row form-actions portlet light">
+                    <button class="btn blue button-next" ng-click="save('DegreeDay')">
+                        Save <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+                    <button class="btn blue button-next" ng-click="cancel()">
+                        Cancel <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <div>
+            <!-- Grid Goes Here -->
+        </div>
+    </div>
+</div>

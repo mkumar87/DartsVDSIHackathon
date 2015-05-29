@@ -1,0 +1,36 @@
+{
+  "name": "angoolar-cookies",
+  "authors": [
+    "Olen Davis <spelledlikeitsounds@gmail.com>"
+  ],
+  "description": "This avails Angular's ngCookies module to AngOOlar projects.",
+  "keywords": [
+    "angoolar",
+    "angular",
+    "cookies",
+    "ngCookies"
+  ],
+  "license": "MIT",
+  "homepage": "http://angoolar.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angoolar": "~0.7.0"
+  },
+  "devDependencies": {
+    "angular-cookies": "1.3.0-rc.2"
+  },
+  "version": "0.4.0",
+  "_release": "0.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.0",
+    "commit": "3050fca1653516fc47fe6961f61e304458b8468f"
+  },
+  "_source": "git://github.com/OlenDavis/angoolar-cookies.git",
+  "_target": "~0.4.0",
+  "_originalSource": "angoolar-cookies"
+}

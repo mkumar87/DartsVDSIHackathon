@@ -1,0 +1,279 @@
+.form-group .tooltip {
+    right: 0;
+    top: 5px;
+}
+.form-group select option:first-child {
+    color: #999;
+}
+.form-group .control-label {
+    text-align: left;
+}
+.progress {
+    height: 5px;
+}
+.label-adj .col-sm-4 {
+    width: 31.333333%;
+}
+
+.no-padding{
+    padding:0;
+}
+
+table.cell-blocks {
+    display: table;
+    border-collapse: separate;
+    border-color: gray;
+}
+
+table.cell-blocks th {
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+
+}
+.table.cell-blocks tr td {
+    display: table-cell;
+    vertical-align: middle;
+    border: 0;
+    background: none;
+    text-align: center;
+    margin-top: 2px;
+    padding:6px 0px;
+}
+
+.table.cell-blocks tr td .fa-stop{
+    font-size: 24px;
+    color:#ddd;
+    cursor: default;
+}
+table.cell-blocks tr td:first-child {
+    border: none;
+    background: none;
+}
+#selectable .ui-selecting {
+    background: #FECA40;
+}
+#selectable .ui-selected {
+    background: #F39814;
+    color: white;
+}
+.wiz-wrap {
+    border-left: 1px solid #eee;
+}
+.progress {
+    margin-top: 30px;
+}
+.form-wizard {
+    padding-bottom: 40px;
+}
+.cell-blocks .ui-selecting {
+    background: #FECA40;
+}
+.cell-blocks .ui-selected {
+    background: #F39814;
+    color: white;
+}
+
+
+.noselect td {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.animate-show {
+    position: relative;
+    top:0;
+    left:0;
+  opacity: 1;
+  background: white;
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+    position: relative;
+    top:0;
+    left:200px;
+  opacity: 0;
+}
+
+/*Loader drop*/
+
+.spinner-drop{
+    position: fixed;
+    background-color: rgba(200, 200, 200, .8);
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    z-index: 10001;
+}
+
+
+/*Animation */
+
+.animate-container {
+  position: relative;
+  width:100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.animate-repeat {
+  position: relative;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition:all linear 1s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+ }
+
+
+.block-select.btn-default:active,
+.block-select.btn-default:focus{
+    background-color:#666;
+    color:#fff;
+}
+
+
+/*Spinner*/
+
+.spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+
+  -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+.backdrop{
+  position: fixed;
+  width:100%;
+  bottom: 0;
+  height:100%;
+  background-color: rgba(255, 255, 255, .8);
+  z-index: 10001;
+}
+
+/*Sankey Styles*/
+
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}
+
+
+.consumption-data{
+  margin-bottom:10px;
+}
+
+.consumption-data h4,
+.consumption-data p{
+  padding:0;
+  margin:0;
+}
+
+.consumption-data p{
+  font-style: italic;
+  color: #999;
+}
+
+.consumption-data p strong{
+  color: #111;
+  font-style: normal;
+
+}
+
+/*Widget spinner*/
+.widget-spinner{
+  width:412px;
+  height: 300px;
+  position: absolute;
+  top:60px;
+  background-color: rgba(255, 255, 255, .5);
+  z-index:1001;
+}
+.tab-content .portlet{
+  margin-bottom: 0;
+}

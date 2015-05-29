@@ -1,0 +1,94 @@
+
+<!-- devices and groups -->
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Meter x</label>
+            <ui-select multiple ng-model="xmeterList.selected" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control" on-select="updateVarX($item,$model)">
+                <ui-select-match placeholder="Select meters...">{{$item.meter_name}} </ui-select-match>
+                <ui-select-choices repeat="xmeter in xmeterList | propsFilter: {meter_name: $select.search}">
+                    <div ng-bind-html="xmeter.meter_name | highlight: $select.search" ></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Meter variable</label>
+            <ui-select multiple ng-model="xvariables.selected" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control">
+                <ui-select-match placeholder="Select variable...">{{$item.sm_description}} </ui-select-match>
+                <ui-select-choices repeat="variable in xvariables | propsFilter: {sm_description: $select.search}">
+                    <div ng-bind-html="variable.sm_description| highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Meter Y</label>
+            <ui-select multiple ng-model="ymeterList.selected" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control" on-select="updateVarY($item,$model)">
+                <ui-select-match placeholder="Select meters...">{{$item.meter_name}} </ui-select-match>
+                <ui-select-choices repeat="meter in ymeterList | propsFilter: {meter_name: $select.search}">
+                    <div ng-bind-html="meter.meter_name | highlight: $select.search" ></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Meter variable</label>
+            <ui-select multiple ng-model="yvariables.selected" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control">
+                <ui-select-match placeholder="Select variable...">{{$item.sm_description}} </ui-select-match>
+                <ui-select-choices repeat="variable in yvariables | propsFilter: {sm_description: $select.search}">
+                    <div ng-bind-html="variable.sm_description| highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</div>
+<!-- Date Range & frequency -->
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Date Range</label>
+            <input date-range-picker class="form-control date-picker" type="text" ng-model="date"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="">Frequency</label>
+            <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group" role="group" ng-repeat="frq in freqs track by $index">
+                    <button type="button" class="btn btn-default {{frq.class}}" ng-click="selectfrq($index)">
+                      {{frq.label}}
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <button class="btn btn-info" ng-click="update()" style="margin-left: 60%; margin-top:12.5%;">
+                                Update
+        </button>
+            
+    </div>
+
+</div>
+<hr>
+<div class="well well-sm" style = "background-color: #FFF">
+    <img src="images/loading-spinner-blue.gif" class="ng-hide" style="
+
+                                                padding-left: 43%;
+                                                padding-top: 15%;
+                                                 padding-bottom: 13%;
+                                            " id = "loader">  
+    <highchart id="chart1" config="chartConfig" class="ng-hide"  height="600" width="900"></highchart>
+    <div class="well" ng-hide="hideGrid">
+    <div id="grid2" ui-grid="dataGrid" ui-grid-selection ui-grid-pagination ui-grid-exporter class="grid"></div>
+    </div>
+   <!-- <am-chart id="myFirstChart" options="amChartOptions" height="600" width="900"></am-chart>-->
+</div>

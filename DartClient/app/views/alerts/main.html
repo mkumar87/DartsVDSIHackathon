@@ -1,0 +1,45 @@
+<!--BEGIN MAIN CONTENT -->
+<div class="margin-top-10">
+    <div class="row">
+        <div class="col-md-3 col-sm-12">
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption font-green-sharp">
+                        <i class="fa fa-bar-chart-o font-green-sharp"></i>
+                        <span class="caption-subject bold uppercase"> Alert Types </span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-repeat="linkType in AlertTypes" ui-sref-active="active">
+                            <a ui-sref="alerts.subview({subview:'{{linkType.name}}'})" class="btn btn-default ">
+                                {{linkType.displayName}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <div class="portlet light">
+                <!--
+                <div class="portlet-title">
+                    <div class="caption font-green-sharp">
+                        <i class="icon-settings font-green-sharp"></i>
+                        <span class="caption-subject bold uppercase">Consumption</span>
+                    </div>
+                                        <div class="actions">
+                        <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#" data-original-title="" title="">
+                        </a>
+                    </div>
+                </div>
+            -->
+                <div class="portlet-body" style="height: auto;">
+                    <div ui-view class="fade-in-up">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT

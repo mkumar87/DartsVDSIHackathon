@@ -1,0 +1,42 @@
+<div class="row form-group" ng-form="{{field}}" ng-class="{'has-error': {{field}}.$dirty && {{field}}.$invalid}">
+    <label class="col-sm-5 control-label">{{ record[field].label }} <span ng-if="record[field].required">*</span>
+    </label>
+    <div class="col-sm-7" ng-switch="record[field].type">
+
+        <!-- when select control -->
+        <select ng-switch-when='options' ng-model="record[field].value" ng-options="k as v for (k,v) in record[field].options" ng-required='record[field].required' class="form-control" placeholder="{{record[field].placeholder}}">            
+        </select>
+
+        <!--  <div ng-switch-when='options'>
+            <ui-select ng-model="record[field].value" theme="selectize" ng-disabled="disabled" >
+                <ui-select-match placeholder="{{record[field].placeholder}}">{{$select.selected.text}}</ui-select-match>
+                <ui-select-choices repeat="option in record[field].options | filter: $select.search">
+                    <span ng-bind-html="option.text | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+            </div> -->
+
+        <!-- when date control -->
+        <div ng-switch-when="date" class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{record[field].format}}" ng-model="record[field].value" is-open="record[field].opened" min-date='record[field].minDate' max-date='record[field].maxDate' ng-required='record[field].required' datepicker-options="record[field].dateOptions" close-text="Close" placeholder="{{record[field].placeholder}}"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="record[field].open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>            
+        </div>
+        
+        <!-- when Checkbox control -->
+        <!-- <input ng-switch-when='checkbox' class="checkbox" type="{{record[field].type}}" ng-model="record[field].value"> -->
+        <div ng-switch-when='checkbox' ng-switcher ng-model="record[field].value"></div>
+
+        <!-- when text/email/url etc -->
+        <input ng-switch-default type="{{record[field].type}}" class="form-control" id="{{record[field].name}}" placeholder="{{record[field].placeholder}}" ng-model="record[field].value" ng-required='record[field].required'>
+
+        <div class="tooltip right" role="tooltip" style="opacity:1;" ng-show="{{field}}.$dirty && {{field}}.$invalid" ng-messages="{{field}}.$error">
+            <div class="tooltip-arrow"></div>
+            <div class="tooltip-inner">
+                <span ng-message="required">{{record[field].label}} is required.</span>
+                <span ng-repeat="(k,v) in types" ng-message="{{k}}">{{record[field].label}} {{v[1]}}</span>
+            </div>
+        </div>
+    </div>
+</div>

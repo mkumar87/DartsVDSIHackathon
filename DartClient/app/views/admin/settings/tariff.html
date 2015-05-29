@@ -1,0 +1,93 @@
+<div class="">
+    
+		<span ng-if="settingTariff.process_status == 'SOFT_ERROR'">
+		  {{settingTariff.message}}
+		</span>
+        <!-- widget:1 - Tariff Form -->
+        <div class="portlet light" ng-repeat='singleSubCategoryDtls in settingTariff.FormDetails' style="margin-bottom:25px;">
+        <form name="$parent.{{singleSubCategoryDtls.uniqueCode}}">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase ng-binding">
+                        <i class="pull-left {{singleSubCategoryDtls.icon}} fa-2x"></i> {{singleSubCategoryDtls.displayName}}
+                    </span>
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                </div>
+            </div>
+            <div class="portlet-body" >
+                <div class="row">
+                    <gcurv-basic-field ng-repeat='field in singleSubCategoryDtls.fields' field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-hover table-light">
+                            <thead>
+                                <tr class="uppercase">
+                                    <th ng-repeat="field in singleSubCategoryDtls.blockFieldDtls">
+                                        {{field.label}}
+                                    </th>
+                                    <th>
+                                        Add
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-model="transactionalTariffData[singleSubCategoryDtls.uniqueCode].DefineBlocksValues" ng-repeat="tr in transactionalTariffData[singleSubCategoryDtls.uniqueCode].DefineBlocksValues track by $index" ng-init="parentIndex = $index">
+                                    <td ng-repeat="field in singleSubCategoryDtls.blockFieldDtls track by $index">
+                                        <div ng-switch="field.type">
+                                            <select ng-switch-when='dropdown' name="{{field.name}}" ng-model="tr[field.name]" ng-options='k as v for (k,v) in field.options' ng-required='field.required' class="form-control" placeholder="{{field.placeholder}}">
+                                            </select>
+
+											<input ng-switch-when='float' type="number" step="any" class="form-control" id="{{field.name}}" placeholder="{{field.placeholder}}" ng-model="tr[field.name]" ng-required='field.required'>
+
+                                            <input ng-switch-default type="{{field.type}}" class="form-control" id="{{field.name}}" placeholder="{{field.placeholder}}" ng-model="tr[field.name]" ng-required='field.required'>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" ng-click="addRateBlock($index, transactionalTariffData[singleSubCategoryDtls.uniqueCode].DefineBlocksValues)">
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
+
+                                        <a href="#" ng-click="removeRateBlock($index, transactionalTariffData[singleSubCategoryDtls.uniqueCode].DefineBlocksValues)">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="singleSubCategoryDtls.type == 'HOURLY_TARIFF'">
+                    <gcurv-ratemapper req-options="transactionalTariffData[singleSubCategoryDtls.uniqueCode]" tariff-pattern="tariffPattern"/>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn blue button-next" ng-click="save(singleSubCategoryDtls, transactionalTariffData[singleSubCategoryDtls.uniqueCode])">
+                        Save <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+                    <button class="btn red" ng-click="delete()">
+                        Delete
+                    </button>
+                    <button class="btn" ng-click="cancel()">
+                        Cancel
+                    </button>
+                     <button class="btn" ng-click="edit(singleSubCategoryDtls, transactionalTariffData[singleSubCategoryDtls.uniqueCode])">
+                       Edit
+                    </button>
+                </div>
+                
+                <div id="grid1" ui-grid="tariffResultGrid[singleSubCategoryDtls.uniqueCode]" ui-grid-selection ui-grid-pagination ui-grid-exporter class="grid"></div>
+                
+            </div>
+            </form>
+        </div>
+    
+    <div id="grid1" ui-grid="tariffResultGrid[singleSubCategoryDtls.uniqueCode]" ui-grid-selection ui-grid-pagination ui-grid-exporter class="grid"></div>
+    <div class="clearfix"></div>
+
+</div>

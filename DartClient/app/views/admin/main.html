@@ -1,0 +1,82 @@
+<!--BEGIN MAIN CONTENT -->
+<div class="margin-top-10">
+    <div class="row">
+        <div class="col-md-3 col-sm-12">
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption font-green-sharp">
+                        <i class="fa fa-building-o font-green-sharp"></i>
+                        <span class="caption-subject bold uppercase">{{treeTitle}}</span>
+                    </div>
+                    <div class="tools">
+                        <a href="javascript:void(0);" ng-click="newFacility()">
+                            <i class="fa fa-plus font-green-sharp"></i>
+                        </a>
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-trash-o font-green-sharp" ng-click="detroySelected()"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <js-tree tree-plugins="types,wholerow" tree-types="typesConfig" tree-data="scope" tree-model="treeModel" tree-events="ready:readyCB;changed:changedCB;open_node:openNodeCB; select_node:selectedCB; deselect_node:deselectCB;"></js-tree>
+                </div>
+            </div>
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">{{modalMessage.modalTitle}}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        {{modalMessage.bodyText}}
+                    </div>
+                    <ul>
+                        <li ng-repeat="item in modalMessage.items">
+                            {{item.facility_description}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+        </div>
+        <div class="col-md-9 col-sm-12 wiz-wrap">
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption font-green-sharp">
+                        <i class="icon-settings font-green-sharp"></i>
+                        <span class="caption-subject bold uppercase">Facility Configuration : {{configFor}}</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#" data-original-title="" title="">
+                        </a>
+                    </div>
+                </div>
+                <div class="portlet-body" style="height: auto;">
+                    <div class="form-wizard">
+                        <div class="form-body">
+                            <ul class="nav nav-wizard">
+                                <li ng-model="settingTabs" ng-repeat="form in settingTabs track by $index" ui-sref-active="active">
+                                    <a ui-sref="admin.subview({subview:'{{form.displayName | lowercase}}'})" class="step">
+                                    {{form.displayName}}
+                                </a>
+                                </li>
+                            </ul>
+                            <!-- Todo: enable in feature -->
+                            <!-- <div id="bar" class="progress progress-striped" role="progressbar">
+                                <div class="progress-bar progress-bar-success" style="width: 25%;">
+                                </div>
+                            </div> -->
+                            <div class="tab-content" style="min-height:568px">
+                                <div ui-view class="fade-in-up">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

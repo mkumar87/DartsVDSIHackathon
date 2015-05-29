@@ -1,0 +1,43 @@
+<div class ="">
+	<form name="reportForm">
+        <!-- widget:1 - General Form -->
+        <div class="portlet light" ng-repeat='singleSubCategoryDtls in reportForms.FormDetails'>
+            <div class="portlet-title">
+                <h4><i class="pull-left {{singleSubCategoryDtls.icon}} fa-2x"></i> {{singleSubCategoryDtls.displayName}}</h4>
+            </div>
+            <div class="portlet-body" ng-switch="singleSubCategoryDtls.type">
+
+                <div class="row" ng-switch-when="SEQUENTIAL">
+                    <gcurv-basic-field ng-repeat='field in singleSubCategoryDtls.fields' field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <!-- Select -->
+                        <ui-select multiple ng-model="meterVar.holder" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control">
+                            <ui-select-match placeholder="Select meter...">{{$item.Name}} </ui-select-match>
+                            <ui-select-choices repeat="meter in meterData | propsFilter: {Name: $select.search}">
+                                <div ng-bind-html="meter.Name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-md-12">
+                            <!--  <button class="btn default button-previous">
+                        <i class="m-icon-swapleft"></i> Back </button> -->
+                            <button class="btn blue" ng-click="save()" style="margin-bottom: 20px;">
+                                Create new alert <i class="m-icon-swapright m-icon-white"></i>
+                            </button>
+                            <div id="grid1" ui-grid="alertGrid" ui-grid-selection ui-grid-pagination ui-grid-exporter class="grid"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

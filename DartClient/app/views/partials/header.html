@@ -1,0 +1,54 @@
+<!-- BEGIN HEADER TOP -->
+<div class="page-header-top">
+    <div class="container-fluid ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="#/dashboard"><img src="images/logo.png" alt="logo" class="logo-default"></a>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler"></a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN TOP NAVIGATION MENU -->
+        <div class="top-menu" ng-if="authenticated.logged" >
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown dropdown-extended dropdown-dark dropdown-inbox" id="header_inbox_bar">
+                    <!--
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" dropdown-menu-hover dropdown-menu-toggle data-close-others="true">
+                        <span class="circle">3</span>
+                        <span class="corner"></span>
+                    </a>
+                    -->
+                </li>
+                <!-- END INBOX DROPDOWN -->
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+                <li class="dropdown dropdown-user dropdown-dark">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" dropdown-menu-hover dropdown-menu-toggle data-close-others="true">
+                   <!--     <img alt="" class="img-circle" src="/images/yeoman.png"> -->
+                        <span class="username username-hide-mobile">{{authenticated.role}}</span>
+                    </a>
+                </li>
+                <!-- END USER LOGIN DROPDOWN -->
+            </ul>
+        </div>
+        <!-- END TOP NAVIGATION MENU -->
+    </div>
+</div>
+<!-- END HEADER TOP -->
+<!-- BEGIN HEADER MENU -->
+<div class="page-header-menu">
+	<div class="container-fluid">
+		<!-- BEGIN MEGA MENU -->
+		<!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+		<!-- DOC: Remove dropdown-menu-hover and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+		<div class="hor-menu">
+			<ul class="nav navbar-nav" ng-if="authenticated">
+				<li ui-sref-active='active' ng-repeat='singleMenu in menuList'>
+					<a ui-sref="{{singleMenu.sm_value}}">{{singleMenu.sm_description}}</a>
+				</li>
+			</ul>
+		</div>
+		<!-- END MEGA MENU -->
+	</div>
+</div>
+<!-- END HEADER MENU -->

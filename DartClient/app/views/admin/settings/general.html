@@ -1,0 +1,64 @@
+<div class="">
+    <form name="generalForm" novalidate>
+        <!-- widget:1 - General Form -->
+        <div class="portlet light" ng-repeat='singleSubCategoryDtls in settingGeneral.FormDetails'>
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase ng-binding">
+                        <i class="pull-left {{singleSubCategoryDtls.icon}} fa-2x"></i> {{singleSubCategoryDtls.displayName}}
+                    </span>
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" ng-class="$index ? 'expand' : 'collapse'"> </a>
+                </div>
+            </div>
+            <div class="portlet-body" ng-switch="singleSubCategoryDtls.type" ng-style="$index ? {'display':'none'} :{'display':'block'}">
+                <div class="row" ng-switch-when="SEQUENTIAL">
+                    <gcurv-basic-field ng-repeat='field in singleSubCategoryDtls.fields track by $index' field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+                </div>
+                <div class="row" ng-switch-when="MULTI_ROW_GRID">
+                    <div class="col-sm-12">
+                        <table class="table table-hover table-light">
+                            <thead>
+                                <tr class="uppercase">
+                                    <th ng-repeat="field in singleSubCategoryDtls.fields">
+                                        {{field.label}}
+                                    </th>
+                                    <th>
+                                        Add
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-model="singleSubCategoryDtls.values" ng-repeat="tr in singleSubCategoryDtls.values track by $index" ng-init="parentIndex = $index">
+                                    <td ng-repeat="field in singleSubCategoryDtls.fields track by $index">
+                                        <div ng-switch="field.type">
+                                            <select ng-switch-when='dropdown' name="{{field.name}}" ng-model="tr[field.name]" ng-options='k as v for (k,v) in field.options' ng-required='field.required' class="form-control" placeholder="{{field.placeholder}}">
+                                            </select>
+                                            <input ng-switch-default type="{{field.type}}" class="form-control" id="{{field.name}}" placeholder="{{field.placeholder}}" ng-model="tr[field.name]" ng-required='field.required'>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" ng-show="singleSubCategoryDtls.values.length == ($index+1)" ng-click="addCommodity($index, singleSubCategoryDtls)">
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
+                                        <a href="#" ng-show="singleSubCategoryDtls.values.length != ($index+1)" ng-click="removeCommodity($index, singleSubCategoryDtls)">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions portlet light">
+            <button class="btn blue button-next" ng-click="save()">
+                Save <i class="m-icon-swapright m-icon-white"></i>
+            </button>
+
+        </div>
+    </form>
+</div>

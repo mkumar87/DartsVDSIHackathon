@@ -1,0 +1,64 @@
+<div class="" id="tab3">
+    <form name="meterForm">
+        <div class="portlet light" ng-repeat='singleSubCategoryDtls in meterFormConfig'>
+            <div class="portlet-title">
+            <div class="caption caption-md">
+                <i class="icon-bar-chart theme-font hide"></i>
+                <span class="caption-subject theme-font bold uppercase ng-binding">
+                   <i class="pull-left {{singleSubCategoryDtls.icon}} fa-2x"></i> {{singleSubCategoryDtls.displayName}}
+                </span>
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+            </div>
+            </div>
+            <div class="portlet-body">
+                <div class="row">
+                    <gcurv-basic-field ng-repeat='field in singleSubCategoryDtls.fields' field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <!--  <button class="btn default button-previous">
+                        <i class="m-icon-swapleft"></i> Back </button> -->
+                            <button class="btn blue" ng-click="edit()">
+                                Edit
+                            </button>
+                            <button class="btn" ng-click="delete()">
+                                Delete
+                            </button>
+                            <button class="btn blue" ng-click="update()">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+
+    <!-- Grid -->
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption caption-md">
+                <i class="icon-bar-chart theme-font hide"></i>
+                <span class="caption-subject theme-font bold uppercase ng-binding">
+                    <i class="pull-left {{gateways.icon}} fa-2x"></i> Meters
+                </span>
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="grid2" ui-grid="meterGrid" ui-grid-selection ui-grid-pagination ui-grid-exporter class="grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,76 @@
+<div class="">
+    <form name="gatewayForm">
+        <!-- widget:1 - General Form -->
+        <div class="portlet light" ng-repeat='fieldItem in settingGateway.FormDetails'>
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase ng-binding">
+                        <i class="pull-left {{fieldItem.icon}} fa-2x"></i> {{fieldItem.displayName}}
+                    </span>
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"></a>
+                </div>
+            </div>
+            <div class="portlet-body" ng-switch="fieldItem.type">
+
+                <div class="row" ng-switch-when="">
+                    <gcurv-basic-field ng-repeat='field in fieldItem.fields' field-dtl="field" class="{{field.class}}"></gcurv-basic-field>
+                </div>
+
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <!--  <button class="btn default button-previous">
+                        <i class="m-icon-swapleft"></i> Back </button> -->
+                            <button class="btn blue" ng-click="save()">
+                                Create new gateway <i class="m-icon-swapright m-icon-white"></i>
+                            </button>
+                            <button class="btn red" ng-click="delete()">
+                                Delete
+                            </button>
+                            <button class="btn" ng-click="cancel()">
+                                Cancel
+                            </button>
+                            <button class="btn" ng-click="edit()">
+                                Edit
+                            </button>
+                            <button class="btn" ng-click="refresh()">
+                                Resync
+                            </button>
+                            <button class="btn" ng-click="update()">
+                                Update
+                            </button>
+                            <button class="btn btn-info" ng-click="test()">
+                                Test
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Grid -->
+    <div class="portlet light">
+        <div class="portlet-title">
+            <div class="caption caption-md">
+                <i class="icon-bar-chart theme-font hide"></i>
+                <span class="caption-subject theme-font bold uppercase ng-binding">
+                    <i class="pull-left {{gateways.icon}} fa-2x"></i> Gateways
+                </span>
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse"></a>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="grid1" ui-grid="gatewayGrid" ui-grid-selection ui-grid-pagination ui-grid-exporter class="grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

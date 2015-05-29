@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="app/scripts/analytics/|app/scripts/alerts/|app/scripts/dashboard/|app/scripts/analytics/apps/|app/scripts/admin/|app/styles/simple-line-icons/|app/scripts/auth/|app/scripts/alerts/apps/|app/scripts/admin/settings/|app/scripts/common/|app/scripts/" kind="src" path=""/>
+	<classpathentry excluding="analytics/|alerts/|dashboard/|analytics/apps/|admin/|auth/|alerts/apps/|admin/settings/|common/" kind="src" path="app/scripts"/>
+	<classpathentry excluding="settings/" kind="src" path="app/scripts/admin"/>
+	<classpathentry kind="src" path="app/scripts/admin/settings"/>
+	<classpathentry excluding="apps/" kind="src" path="app/scripts/alerts"/>
+	<classpathentry kind="src" path="app/scripts/alerts/apps"/>
+	<classpathentry excluding="apps/" kind="src" path="app/scripts/analytics"/>
+	<classpathentry kind="src" path="app/scripts/analytics/apps"/>
+	<classpathentry kind="src" path="app/scripts/auth"/>
+	<classpathentry kind="src" path="app/scripts/common"/>
+	<classpathentry kind="src" path="app/scripts/dashboard"/>
+	<classpathentry kind="src" path="app/styles/simple-line-icons"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

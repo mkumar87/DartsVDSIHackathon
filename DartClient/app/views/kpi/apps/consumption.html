@@ -1,0 +1,64 @@
+<!-- comodities -->
+<ul class="nav nav-tabs">
+    <li ng-repeat="commodity in commodities" class="{{commodity.class}}" >
+        <a href="#" ng-click=getCommodity(commodity.commodity_code)>{{commodity.commodity_name}}</a>
+    </li>
+</ul>
+
+<!-- devices and groups -->
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Devices</label>
+            <ui-select multiple ng-model="devices.selected" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control">
+                <ui-select-match placeholder="Select Devices...">{{$item.device_name}} </ui-select-match>
+                <ui-select-choices repeat="device in devices | propsFilter: {device_name: $select.search}">
+                    <div ng-bind-html="device.device_name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Groups</label>
+            <ui-select multiple ng-model="groups.selected" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control">
+                <ui-select-match placeholder="Select Groups...">{{$item.group_name}} </ui-select-match>
+                <ui-select-choices repeat="group in groups | propsFilter: {group_name: $select.search}">
+                    <div ng-bind-html="group.group_name | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</div>
+<!-- Date Range & frequency -->
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Date Range</label>
+            <input date-range-picker class="form-control date-picker" type="text" ng-model="date" />
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Frequency</label>
+            <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group" role="group" ng-repeat="frq in freqs track by $index">
+                    <button type="button" class="btn btn-default {{frq.class}}" ng-click="selectfrq($index)">
+                      {{frq.label}}
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <button class="btn btn-info" ng-click="update()" style="margin-left: 60%; margin-top:12.5%;">
+                                Update
+        </button>
+            
+    </div>
+</div>
+<hr>
+<div class="well well-sm" style = "background-color: #FFF" >
+    <div id="chartdiv" style="width: 100%; height: 400px; background-color: #FFFFF"></div>
+</div>

@@ -1,0 +1,250 @@
+<div class="chart-widget" ng-switch="widgetType" id="chart_{{widget.WidgetId}}">
+    <div ng-switch-when="CONSUMPTION">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase">
+                        {{widgetConfig.widgetTitle}}
+                    </span>
+                </div>
+
+                <div class="actions">
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="editWidget(widgetConfig.id)">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <!-- <a class="btn btn-icon-only" href="javascript:;">
+                        <i class="fa fa-wrench"></i> -->
+                    </a>
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="refreshWidget(widgetConfig.id)">
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="deleteWidget(widgetConfig.id, widgetPosition)">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="height:300px">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-muted">
+                            <small>{{widgetData.from_display_text}}</small>
+                            <br>
+                            <small> <!-- Placeholder for unit cost --> </small>
+                        </p>
+                    </div>
+                    <div class="col-sm-3 icon-big">
+                        <i class="fa fa-{{widgetData.widget_icon}} fa-6x"></i>
+                    </div>
+                    <div class="col-sm-9">
+                        <div style="padding-left:10px;">
+                            <p class="text-muted" style="margin:0;">
+                                {{widgetData.to_display_text}}</p>
+                            <h1 style="margin:0; padding:0; font-weight:bold;">
+                                {{widgetData.CurrentConsumption | number:2}}
+                                <small>{{widgetData.UOM}}</small>
+                            </h1>
+                            <div class="well well-sm" style="margin-top:10px;">
+                                <div class="consumption-data">
+                                    <div class="pull-left" style="padding-top:10px; width:10%;">
+                                        <i class="fa fa-caret-down fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="pull-left" style="padding-left:10px; width:90%;">
+                                        <p>Based on <strong>{{widgetData.duration_value | setDecimal:0}}</strong> {{widgetData.duration_unit}}</p>
+                                        <h4>
+                                        {{widgetData.ChangePercentage | number:2}} %
+                                            <small>
+                                                <i class="fa fa-caret-down"></i>
+                                                {{widgetData.compared_to_text}}
+                                            </small>
+                                        </h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="consumption-data">
+                                    <div class="pull-left" style="padding-top:10px; width:10%;">
+                                        <i class="fa fa-calendar-o fa-2x text-warning"></i>
+                                    </div>
+                                    <div class="pull-left" style="padding-left:10px; width:90%;">
+                                        <p>Data Period</p>
+                                        <h4>
+                                        {{widgetData.from_display_text}} - {{widgetData.to_display_text}}
+                                        </h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="consumption-data">
+                                    <div class="pull-left" style="padding-top:10px; width:10%;">
+                                        <i class="fa fa-check-circle-o fa-2x text-success"></i>
+                                    </div>
+                                    <div class="pull-left" style="padding-left:10px; width:90%;">
+                                        <p>Data Availability</p>
+                                        <h4>
+                                        {{widgetData.data_availability | setDecimal:2}}
+                                        </h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONSUMPTION/ -->
+    <div ng-switch-when="CONSUMPTION_PLOT">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase">
+                        {{widgetConfig.widgetTitle}}
+                    </span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="editWidget(widgetConfig.id)">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <!-- <a class="btn btn-icon-only" href="javascript:;">
+                        <i class="fa fa-wrench"></i> -->
+                    </a>
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="refreshWidget(widgetConfig.id)">
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="deleteWidget(widgetConfig.id, widgetPosition)">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="height:300px">
+                <am-chart id="amchart_{{widget.WidgetId}}" options="chartOptions"></am-chart>
+            </div>
+        </div>
+    </div>
+    <!-- CONSUMPTION_PLOT/ -->
+    <div ng-switch-when="COST">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase">
+                        {{widgetConfig.widgetTitle}}
+                    </span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="editWidget(widgetConfig.id)">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <!-- <a class="btn btn-icon-only" href="javascript:;">
+                        <i class="fa fa-wrench"></i> -->
+                    </a>
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="refreshWidget(widgetConfig.id)">
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="deleteWidget(widgetConfig.id, widgetPosition)">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="height:300px">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-muted">
+                            <small>{{widgetData.from_display_text}}</small>
+                            <br>
+                            <small> <!-- Placeholder for unit cost --> </small>
+                        </p>
+                    </div>
+                    <div class="col-sm-3 icon-big">
+                        <i class="fa fa-{{widgetData.widget_icon}} fa-6x text-warning"></i>
+                    </div>
+                    <div class="col-sm-9">
+                        <div style="padding-left:10px; padding-top:20px">
+                            <p class="text-muted" style="margin:0;">
+                                {{widgetData.to_display_text}}</p>
+                            <h1 style="margin:0; padding:0; font-weight:bold;">
+                                {{widgetData.CurrentConsumption | setDecimal:2}}
+                                <small>{{widgetData.UOM}}</small>
+                            </h1>
+                            <div class="well well-sm" style="margin-top:10px;">
+                                <div class="consumption-data">
+                                    <div class="pull-left" style="padding-top:10px; width:10%;">
+                                        <i class="fa fa-caret-down fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="pull-left" style="padding-left:10px; width:90%;">
+                                        <p>Based on <strong>{{widgetData.duration_value | setDecimal:0}}</strong> {{widgetData.duration_unit}}</p>
+                                        <h4>
+                                        {{widgetData.ChangePercentage | setDecimal:2}} %
+                                            <small>
+                                                <i class="fa fa-caret-down"></i>
+                                                {{widgetData.compared_to_text}}
+                                            </small>
+                                        </h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="consumption-data">
+                                    <div class="pull-left" style="padding-top:10px; width:10%;">
+                                        <i class="fa fa-calendar-o fa-2x text-warning"></i>
+                                    </div>
+                                    <div class="pull-left" style="padding-left:10px; width:90%;">
+                                        <p>Data Period</p>
+                                        <h4>
+                                        {{widgetData.from_display_text}} - {{widgetData.to_display_text}}
+                                        </h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="consumption-data">
+                                    <div class="pull-left" style="padding-top:10px; width:10%;">
+                                        <i class="fa fa-check-circle-o fa-2x text-success"></i>
+                                    </div>
+                                    <div class="pull-left" style="padding-left:10px; width:90%;">
+                                        <p>Data Availability</p>
+                                        <h4>
+                                        {{widgetData.data_availability | setDecimal:2}}
+                                        </h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- COST/ -->
+    <div ng-switch-when="COST_PLOT">
+        <div class="portlet light ">
+            <div class="portlet-title">
+                <div class="caption caption-md">
+                    <i class="icon-bar-chart theme-font hide"></i>
+                    <span class="caption-subject theme-font bold uppercase">
+                        {{widgetConfig.widgetTitle}}
+                    </span>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="editWidget(widgetConfig.id)">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <!-- <a class="btn btn-icon-only" href="javascript:;">
+                        <i class="fa fa-wrench"></i> -->
+                    </a>
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="refreshWidget()">
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                    <a class="btn btn-icon-only" href="javascript:;" ng-click="deleteWidget(widgetConfig.id, widgetPosition)">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body" style="height:300px">
+                <am-chart id="amchart_{{widget.WidgetId}}" options="chartOptions"></am-chart>
+
+            </div>
+        </div>
+    </div>
+    <!-- COST_PLOT/ -->
+</div>

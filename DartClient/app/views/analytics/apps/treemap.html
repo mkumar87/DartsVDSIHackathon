@@ -1,0 +1,54 @@
+<!-- devices and groups -->
+<div class = "row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="">Please select a commodity</label>
+            <ui-select multiple ng-model="commodityList.selected" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control">
+                <ui-select-match placeholder="Please select a single commodity">{{$item.sm_description}} </ui-select-match>
+                <ui-select-choices repeat="commodity in commodityList | propsFilter: {sm_description: $select.search}">
+                    <div ng-bind-html="commodity.sm_description | highlight: $select.search" ></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="">Please select a dimension</label>
+            <ui-select multiple ng-model="dimensionList.selected" theme="bootstrap" class="ui-select-multiple ui-select-bootstrap dropdown form-control">
+                <ui-select-match placeholder="Please select a single dimension">{{$item.name}} </ui-select-match>
+                <ui-select-choices repeat="dimension in dimensionList | propsFilter: {name: $select.search}">
+                    <div ng-bind-html="dimension.name | highlight: $select.search" ></div>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+    
+    <div class="col-sm-3">
+        <button class="btn btn-info" ng-click="update()" style="margin-left: 60%; margin-top:12.5%;">
+            Update
+        </button>
+            
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="">Date Range</label>
+            <input date-range-picker class="form-control date-picker" type="text" ng-model="date"/>
+        </div>
+    </div>
+    
+</div>
+
+<hr>
+<div class="well well-sm">
+    <img src="images/loading-spinner-blue.gif" class="ng-hide" style="
+
+                                                padding-left: 43%;
+                                                padding-top: 15%;
+                                                 padding-bottom: 13%;
+                                            " id = "loader">  
+    <highchart id="chart1" config="chartConfig" class="ng-hide" height="600" width="900"></highchart>
+   <!-- <am-chart id="myFirstChart" options="amChartOptions" height="600" width="900"></am-chart>-->
+</div>
